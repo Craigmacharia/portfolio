@@ -10,28 +10,28 @@ function Ptfl() {
   // Sample projects data with icons
   const projects = [
     {
-      title: "AI-Powered SaaS Platform",
-      description: "Built a scalable AI solution for business automation",
-      tech: "React, Node.js, TensorFlow",
-      icon: "bi-robot"
+      title: "Landing Page Board",
+      description: "A responsive landing page template with modern design elements",
+      tech: "HTML, CSS, JavaScript",
+      icon: "bi-layout-text-window",
+      link: "https://landingpageboard.netlify.app/",
+      github: "https://github.com/yourusername/landingpageboard"
     },
     {
-      title: "Blockchain Wallet",
-      description: "Secure cryptocurrency wallet with multi-chain support",
-      tech: "Solidity, Web3.js, React",
-      icon: "bi-currency-bitcoin"
+      title: "Ladha House",
+      description: "Real estate showcase website with property listings",
+      tech: "HTML, CSS, JavaScript",
+      icon: "bi-house",
+      link: "https://ladhahouse.netlify.app/",
+      github: "https://github.com/yourusername/ladhahouse"
     },
     {
-      title: "E-commerce Dashboard",
-      description: "Real-time analytics for online stores",
-      tech: "Vue.js, Firebase, D3.js",
-      icon: "bi-graph-up-arrow"
-    },
-    {
-      title: "AR Navigation App",
-      description: "Indoor navigation using augmented reality",
-      tech: "ARKit, Swift, Firebase",
-      icon: "bi-gear-wide-connected"
+      title: "Payroll Calculator",
+      description: "Interactive tool for calculating employee payroll information",
+      tech: "HTML, CSS, JavaScript",
+      icon: "bi-calculator",
+      link: "https://craigmacharia.github.io/payroll-calculator/",
+      github: "https://github.com/craigmacharia/payroll-calculator"
     }
   ];
 
@@ -45,17 +45,44 @@ function Ptfl() {
     { name: "Blockchain", icon: "bi-shield-lock", level: 70 }
   ];
 
-  // Auto-slider effect
+  // Auto-slider effect with pause on hover
   useEffect(() => {
-    const interval = setInterval(() => {
-      setActiveSlide((prev) => (prev + 1) % projects.length);
-    }, 5000);
-    return () => clearInterval(interval);
+    let interval;
+    const carouselElement = document.getElementById('projectCarousel');
+    
+    const startInterval = () => {
+      interval = setInterval(() => {
+        setActiveSlide(prev => (prev + 1) % projects.length);
+      }, 5000);
+    };
+  
+    const pauseInterval = () => {
+      clearInterval(interval);
+    };
+  
+    // Start with first slide immediately
+    setActiveSlide(0);
+    startInterval();
+  
+    // Pause on hover
+    if (carouselElement) {
+      carouselElement.addEventListener('mouseenter', pauseInterval);
+      carouselElement.addEventListener('mouseleave', startInterval);
+    }
+  
+    // Cleanup
+    return () => {
+      clearInterval(interval);
+      if (carouselElement) {
+        carouselElement.removeEventListener('mouseenter', pauseInterval);
+        carouselElement.removeEventListener('mouseleave', startInterval);
+      }
+    };
   }, [projects.length]);
 
   return (
     <>
-      {/* Animated Navbar with Hamburger Animation */}
+      {/* Animated Navbar */}
       <nav className="navbar navbar-expand-lg navbar-dark fixed-top animate__animated animate__fadeInDown" style={{ background: 'linear-gradient(135deg, #1a1a2e 0%, #16213e 100%)' }}>
         <div className="container">
           <a className="navbar-brand fw-bold d-flex align-items-center" href="#">
@@ -97,7 +124,7 @@ function Ptfl() {
         </div>
       </nav>
 
-      {/* Hero Section with Particle Animation */}
+      {/* Hero Section */}
       <section id="home" className="vh-100 d-flex align-items-center text-white position-relative overflow-hidden" style={{ background: 'linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%)' }}>
         <div className="particles">
           {[...Array(30)].map((_, i) => (
@@ -177,105 +204,79 @@ function Ptfl() {
         </div>
       </section>
 
-      {/* Projects Auto-Slider */}
-<section id="projects" className="py-5" style={{ background: 'linear-gradient(to right, #f5f7fa 0%, #c3cfe2 100%)' }}>
-  <div className="container py-5">
-    <h2 className="text-center mb-5 fw-bold animate__animated animate__fadeIn">
-      <i className="bi bi-folder me-2"></i> My Projects
-    </h2>
-    
-    <div className="row justify-content-center">
-      <div className="col-lg-9">
-        <div className="card shadow-lg border-0 overflow-hidden hover-scale">
-          <div className="card-body p-0">
-            <div id="projectCarousel" className="carousel slide" data-bs-ride="carousel">
-              <div className="carousel-inner">
-                {[
-                  {
-                    title: "Landing Page Board",
-                    description: "A responsive landing page template with modern design elements",
-                    tech: "HTML, CSS, JavaScript",
-                    icon: "bi-layout-text-window",
-                    link: "https://landingpageboard.netlify.app/",
-                    github: "https://github.com/yourusername/landingpageboard"
-                  },
-                  {
-                    title: "Ladha House",
-                    description: "Real estate showcase website with property listings",
-                    tech: "HTML, CSS, JavaScript",
-                    icon: "bi-house",
-                    link: "https://ladhahouse.netlify.app/",
-                    github: "https://github.com/yourusername/ladhahouse"
-                  },
-                  {
-                    title: "Payroll Calculator",
-                    description: "Interactive tool for calculating employee payroll information",
-                    tech: "HTML, CSS, JavaScript",
-                    icon: "bi-calculator",
-                    link: "https://craigmacharia.github.io/payroll-calculator/",
-                    github: "https://github.com/craigmacharia/payroll-calculator"
-                  }
-                ].map((project, index) => (
-                  <div 
-                    key={index}
-                    className={`carousel-item ${index === activeSlide ? 'active' : ''}`}
-                  >
-                    <div className="p-5 text-center">
-                      <div className="icon-lg mb-4">
-                        <i className={`bi ${project.icon}`} style={{ fontSize: '3rem', color: '#6c63ff' }}></i>
+      {/* Projects Section with Galaxy Background */}
+      <section id="projects" className="py-5 position-relative" style={{ background: 'linear-gradient(to right, #000428, #004e92)' }}>
+        <div className="galaxy-bg position-absolute w-100 h-100 top-0 start-0"></div>
+        <div className="container py-5 position-relative">
+          <h2 className="text-center mb-5 fw-bold text-white animate__animated animate__fadeIn">
+            <i className="bi bi-folder me-2"></i> My Projects
+          </h2>
+          
+          <div className="row justify-content-center">
+            <div className="col-lg-9">
+              <div className="card shadow-lg border-0 overflow-hidden bg-dark bg-opacity-75">
+                <div id="projectCarousel" className="carousel slide" data-bs-ride="carousel">
+                  <div className="carousel-inner rounded-3">
+                    {projects.map((project, index) => (
+                      <div 
+                        key={index}
+                        className={`carousel-item ${index === activeSlide ? 'active' : ''} p-4`}
+                      >
+                        <div className="text-center p-3 text-white">
+                          <div className="icon-lg mb-4">
+                            <i className={`bi ${project.icon}`} style={{ fontSize: '3rem', color: '#6c63ff' }}></i>
+                          </div>
+                          <h3 className="fw-bold mb-3">{project.title}</h3>
+                          <p className="text-light mb-4 fs-5">{project.description}</p>
+                          <div className="d-flex flex-wrap justify-content-center gap-2 mb-4">
+                            {project.tech.split(', ').map((tech, i) => (
+                              <span key={i} className="badge bg-primary bg-opacity-25 text-white p-2 shadow-sm">
+                                {tech}
+                              </span>
+                            ))}
+                          </div>
+                          <div className="d-flex justify-content-center gap-3">
+                            <a 
+                              href={project.link} 
+                              target="_blank" 
+                              rel="noopener noreferrer"
+                              className="btn btn-primary btn-lg px-4 rounded-pill hover-grow"
+                            >
+                              <i className="bi bi-eye me-2"></i> View Live
+                            </a>
+                            <a 
+                              href={project.github} 
+                              target="_blank" 
+                              rel="noopener noreferrer"
+                              className="btn btn-dark btn-lg px-4 rounded-pill hover-grow"
+                            >
+                              <i className="bi bi-github me-2"></i> GitHub
+                            </a>
+                          </div>
+                        </div>
                       </div>
-                      <h3 className="fw-bold mb-3">{project.title}</h3>
-                      <p className="text-muted mb-4 fs-5">{project.description}</p>
-                      <div className="d-flex flex-wrap justify-content-center gap-2 mb-4">
-                        {project.tech.split(', ').map((tech, i) => (
-                          <span key={i} className="badge bg-light text-dark p-2 shadow-sm">
-                            {tech}
-                          </span>
-                        ))}
-                      </div>
-                      <div className="d-flex justify-content-center gap-3">
-                        <a 
-                          href={project.link} 
-                          target="_blank" 
-                          rel="noopener noreferrer"
-                          className="btn btn-primary btn-lg px-4 rounded-pill hover-grow"
-                        >
-                          <i className="bi bi-eye me-2"></i> View Live
-                        </a>
-                        <a 
-                          href={project.github} 
-                          target="_blank" 
-                          rel="noopener noreferrer"
-                          className="btn btn-dark btn-lg px-4 rounded-pill hover-grow"
-                        >
-                          <i className="bi bi-github me-2"></i> GitHub
-                        </a>
-                      </div>
-                    </div>
+                    ))}
                   </div>
-                ))}
+                  <button 
+                    className="carousel-control-prev" 
+                    type="button" 
+                    onClick={() => setActiveSlide((prev) => (prev - 1 + projects.length) % projects.length)}
+                  >
+                    <span className="carousel-control-prev-icon bg-primary rounded-circle p-3" aria-hidden="true"></span>
+                  </button>
+                  <button 
+                    className="carousel-control-next" 
+                    type="button" 
+                    onClick={() => setActiveSlide((prev) => (prev + 1) % projects.length)}
+                  >
+                    <span className="carousel-control-next-icon bg-primary rounded-circle p-3" aria-hidden="true"></span>
+                  </button>
+                </div>
               </div>
-              <button 
-                className="carousel-control-prev" 
-                type="button" 
-                onClick={() => setActiveSlide((prev) => (prev - 1 + projects.length) % projects.length)}
-              >
-                <span className="carousel-control-prev-icon bg-dark rounded-circle p-3" aria-hidden="true"></span>
-              </button>
-              <button 
-                className="carousel-control-next" 
-                type="button" 
-                onClick={() => setActiveSlide((prev) => (prev + 1) % projects.length)}
-              >
-                <span className="carousel-control-next-icon bg-dark rounded-circle p-3" aria-hidden="true"></span>
-              </button>
             </div>
           </div>
         </div>
-      </div>
-    </div>
-  </div>
-</section>
+      </section>
 
       {/* Contact Section */}
       <section id="contact" className="py-5 text-white" style={{ background: 'linear-gradient(135deg, #1a1a2e 0%, #16213e 100%)' }}>
@@ -286,48 +287,24 @@ function Ptfl() {
           <div className="row justify-content-center">
             <div className="col-lg-8">
               <div className="card border-0 shadow-lg animate__animated animate__fadeInUp hover-scale">
-                <div className="card-body p-4 p-md-5">
-                  <form>
-                    <div className="row g-3">
-                      <div className="col-md-6">
-                        <div className="form-floating">
-                          <input type="text" className="form-control form-control-lg bg-dark text-white border-secondary" id="name" placeholder="Your Name" />
-                          <label htmlFor="name" className="text-muted">Your Name</label>
-                        </div>
-                      </div>
-                      <div className="col-md-6">
-                        <div className="form-floating">
-                          <input type="email" className="form-control form-control-lg bg-dark text-white border-secondary" id="email" placeholder="Your Email" />
-                          <label htmlFor="email" className="text-muted">Your Email</label>
-                        </div>
-                      </div>
-                      <div className="col-12">
-                        <div className="form-floating">
-                          <textarea className="form-control form-control-lg bg-dark text-white border-secondary" id="message" rows="5" placeholder="Your Message" style={{ height: '150px' }}></textarea>
-                          <label htmlFor="message" className="text-muted">Your Message</label>
-                        </div>
-                      </div>
-                      <div className="col-12">
-                        <button type="submit" className="btn btn-primary btn-lg w-100 py-3 rounded-pill shadow hover-grow">
-                          <i className="bi bi-send me-2"></i> Send Message
-                        </button>
-                      </div>
-                    </div>
-                  </form>
+                <div className="card-body p-4 p-md-5 text-center">
+                  <div className="mb-5">
+                    <h3 className="fw-bold mb-4">Ready to start a project?</h3>
+                    <p className="lead">Let's build something amazing together!</p>
+                  </div>
+                  <a 
+                    href="https://wa.me/+254110928039" 
+                    className="btn btn-success btn-lg px-5 py-3 rounded-pill shadow hover-grow"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    <i className="bi bi-whatsapp me-2"></i> Message Me on WhatsApp
+                  </a>
                   <div className="text-center mt-5">
-                    <p className="mb-4">Or contact me directly:</p>
+                    <p className="mb-4">Or connect with me on:</p>
                     <div className="d-flex justify-content-center gap-3">
                       <a 
-                        href="https://wa.me/+254110928039" 
-                        className="btn btn-success rounded-circle p-3 shadow hover-grow"
-                        target="_blank"
-                        rel="noreferrer"
-                        title="WhatsApp"
-                      >
-                        <i className="bi bi-whatsapp fs-4"></i>
-                      </a>
-                      <a 
-                        href="mailto:your.cmacharia482@gmail.com" 
+                        href="mailto:cmacharia482@gmail.com" 
                         className="btn btn-danger rounded-circle p-3 shadow hover-grow"
                         title="Email"
                       >
@@ -343,7 +320,7 @@ function Ptfl() {
                         <i className="bi bi-github fs-4"></i>
                       </a>
                       <a 
-                        href="https://linkedin.com/in/craig macharia" 
+                        href="https://linkedin.com/in/craig-macharia" 
                         className="btn btn-primary rounded-circle p-3 shadow hover-grow"
                         target="_blank"
                         rel="noreferrer"
@@ -413,6 +390,15 @@ function Ptfl() {
           border-radius: 50%;
           pointer-events: none;
           animation: float linear infinite;
+        }
+        
+        .galaxy-bg {
+          background: 
+            radial-gradient(circle at 20% 30%, rgba(108, 99, 255, 0.15) 0%, transparent 30%),
+            radial-gradient(circle at 80% 70%, rgba(255, 101, 132, 0.15) 0%, transparent 30%),
+            radial-gradient(circle at 40% 60%, rgba(58, 123, 213, 0.15) 0%, transparent 30%),
+            url("data:image/svg+xml,%3Csvg viewBox='0 0 2000 2000' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.1'/%3E%3C/svg%3E");
+          opacity: 0.8;
         }
         
         @keyframes float {
