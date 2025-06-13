@@ -1,4 +1,4 @@
-import Ptfl from './Ptfl'
+import Ptfl from './ptfl.jsx'
 
 function App() {
   return <Ptfl />
