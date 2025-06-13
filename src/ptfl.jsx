@@ -18,7 +18,7 @@ function Ptfl() {
       github: "https://github.com/Craigmacharia/landingpageboard"
     },
     {
-      title: "Ladha House",
+      title: "Ladha House Hotels",
       description: "Real estate showcase website with property listings",
       tech: "HTML, CSS, JavaScript",
       icon: "bi-house",
@@ -285,6 +285,12 @@ function Ptfl() {
       </h1>
       <p className="lead mb-4 fs-3 animate__animated animate__fadeIn animate__delay-1s">
         I build <span className="text-primary">cosmic digital solutions</span> with code.
+      </p>
+      <p className="lead mb-4 fs-3 animate__animated animate__fadeIn animate__delay-1s">
+        This <span className="text-primary">is just a little taste</span> of what I can do.
+      </p>
+      <p className="lead mb-4 fs-3 animate__animated animate__fadeIn animate__delay-1s">
+        AI dev <span className="text-primary">web dev</span> App dev.
       </p>
       <div className="d-flex gap-3 justify-content-center animate__animated animate__fadeInUp animate__delay-2s">
         <a href="#projects" className="btn btn-lg px-4 py-3 rounded-pill shadow-lg hover-grow cosmic-btn-primary">
@@ -787,7 +793,7 @@ function Ptfl() {
   
   <div className="container py-5 position-relative z-index-1">
     <h2 className="text-center mb-5 fw-bold text-white animate__animated animate__fadeIn">
-      <i className="bi bi-chat-dots me-2 text-warning"></i> Get In Touch
+      <i className="bi bi-chat-dots me-2 text-"></i> Get In Touch
     </h2>
     
     <div className="row justify-content-center">
